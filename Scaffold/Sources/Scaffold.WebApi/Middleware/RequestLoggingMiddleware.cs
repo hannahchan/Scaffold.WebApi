@@ -9,9 +9,9 @@ namespace Scaffold.WebApi.Middleware
 
     public class RequestLoggingMiddleware
     {
-        private const string RequestStartedMessageTemplate = "Inbound HTTP {HttpMethod} {Path} started";
+        private const string RequestStartedMessageTemplate = "Inbound HTTP {HttpMethod} {RequestPath} started";
 
-        private const string RequestFinishedMessageTemplate = "Inbound HTTP {HttpMethod} {Path} finished - {StatusCode}";
+        private const string RequestFinishedMessageTemplate = "Inbound HTTP {HttpMethod} {RequestPath} finished - {StatusCode}";
 
         private static readonly Action<ILogger, string, PathString, Exception?> LogRequestStarted =
             LoggerMessage.Define<string, PathString>(LogLevel.Information, default, RequestStartedMessageTemplate);
