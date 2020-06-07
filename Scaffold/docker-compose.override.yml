@@ -27,4 +27,10 @@ services:
         protocol: tcp
         published: 14268
         target: 14268
+  loki:
+    ports:
+      - mode: ingress
+        protocol: tcp
+        published: 3100
+        target: 3100
 version: "3.5"
