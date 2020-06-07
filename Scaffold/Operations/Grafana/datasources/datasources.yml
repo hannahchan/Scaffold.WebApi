@@ -7,6 +7,11 @@ datasources:
     type: jaeger
     url: "http://jaeger:16686"
   - access: proxy
+    isDefault: false
+    name: Loki
+    type: loki
+    url: "http://loki:3100"
+  - access: proxy
     isDefault: true
     name: Prometheus
     type: prometheus

@@ -60,6 +60,7 @@
                 "postgres",
                 "grafana",
                 "jaeger",
+                "loki",
                 "prometheus"
             ],
             "presentation": {
