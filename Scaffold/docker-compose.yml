@@ -65,6 +65,13 @@ services:
       - source: jaeger_tmp
         target: /tmp
         type: volume
+  loki:
+    image: grafana/loki
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - source: loki
+        target: /loki
+        type: volume
   prometheus:
     image: prom/prometheus
     ports:
@@ -84,4 +91,5 @@ volumes:
   postgres_pgdata: ~
   grafana: ~
   jaeger_tmp: ~
+  loki: ~
   prometheus: ~
