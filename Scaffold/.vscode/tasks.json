@@ -44,7 +44,15 @@
       },
       "dependsOn": ["Stop Infrastructure"],
       "type": "process",
-      "args": ["up", "-d", "postgres", "grafana", "jaeger", "loki", "prometheus"],
+      "args": [
+        "up",
+        "-d",
+        "postgres",
+        "grafana",
+        "jaeger",
+        "loki",
+        "prometheus"
+      ],
       "presentation": {
         "echo": true,
         "reveal": "never",
