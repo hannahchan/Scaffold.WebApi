@@ -34,7 +34,7 @@ namespace Scaffold.WebApi.Controllers
         public async Task<string> Proxy([FromQuery] string? name)
         {
             HttpRequest request = this.HttpContext.Request;
-            Uri uri = new Uri($"{request.Scheme}://localhost:5001/TracingDemo/Hello?name={name ?? "random"}", UriKind.Absolute);
+            Uri uri = new Uri($"{request.Scheme}://{request.Host}/TracingDemo/Hello?name={name ?? "random"}", UriKind.Absolute);
 
             HttpResponseMessage response = await this.tracingDemoClient.Get(uri);
 
