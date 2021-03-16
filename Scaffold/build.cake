@@ -138,6 +138,19 @@ Task("Publish")
         DeleteDirectories(GetDirectories(settings.OutputDirectory.ToString()), deleteSettings);
     });
 
+Task("Containerize")
+    .Does(() =>
+    {
+        StartProcess("docker-compose", new ProcessSettings
+        {
+            Arguments = new ProcessArgumentBuilder()
+                .Append("build")
+                .Append("--force-rm")
+                .Append("--pull")
+                .Append("scaffold")
+        });
+    });
+
 //////////////////////////////////////////////////////////////////////
 // EXECUTION
 //////////////////////////////////////////////////////////////////////
