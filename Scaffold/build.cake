@@ -137,16 +137,19 @@ Task("Publish")
     });
 
 Task("Containerize")
+    .IsDependentOn("Publish")
     .Does(() =>
     {
-        StartProcess("docker-compose", new ProcessSettings
-        {
-            Arguments = new ProcessArgumentBuilder()
-                .Append("build")
-                .Append("--force-rm")
-                .Append("--pull")
-                .Append("scaffold")
-        });
+        Unzip($"{buildArtifacts}/Scaffold.WebApi.zip", $"{buildArtifacts}/Scaffold.WebApi");
+
+        // StartProcess("docker-compose", new ProcessSettings
+        // {
+        //     Arguments = new ProcessArgumentBuilder()
+        //         .Append("build")
+        //         .Append("--force-rm")
+        //         .Append("--pull")
+        //         .Append("scaffold")
+        // });
     });
 
 //////////////////////////////////////////////////////////////////////
