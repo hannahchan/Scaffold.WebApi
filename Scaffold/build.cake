@@ -2,7 +2,6 @@
 // ARGUMENTS
 //////////////////////////////////////////////////////////////////////
 
-string configuration = Argument("Configuration", "Debug");
 string target = Argument("Target", "Publish");
 
 //////////////////////////////////////////////////////////////////////
@@ -15,6 +14,7 @@ string testArtifacts = $"{artifacts}/Test";
 
 string projectName = "Scaffold";
 string solution = "./Scaffold.sln";
+string configuration = "Release";
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -116,21 +116,19 @@ Task("Publish")
     .IsDependentOn("Test")
     .Does(() =>
     {
-        string folderName = configuration.First().ToString().ToUpper() + configuration.Substring(1).ToLower();
-
         DeleteDirectorySettings deleteSettings = new DeleteDirectorySettings
         {
             Force = true,
             Recursive = true,
         };
 
-        DeleteDirectories(GetDirectories($"{buildArtifacts}/{folderName}"), deleteSettings);
+        DeleteDirectories(GetDirectories($"{buildArtifacts}"), deleteSettings);
 
         DotNetCorePublishSettings settings = new DotNetCorePublishSettings
         {
             Configuration = configuration,
             NoBuild = true,
-            OutputDirectory = $"{buildArtifacts}/{folderName}/Scaffold.WebApi"
+            OutputDirectory = $"{buildArtifacts}/Scaffold.WebApi"
         };
 
         DotNetCorePublish("./Sources/Scaffold.WebApi", settings);
